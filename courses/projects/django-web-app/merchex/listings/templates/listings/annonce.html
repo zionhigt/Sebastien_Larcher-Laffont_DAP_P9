@@ -1,0 +1,24 @@
+{% extends 'listings/base.html'%}
+
+{% block content %}
+<div id="annoncement">
+    <h1>{{ annonce.title }}</h1>
+    <table border>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Année</th>
+            <th>Type</th>
+            <th>Band</th>
+        </tr>
+        <tr>
+            <td>{{ annonce.title }}</td>
+            <td>{{ annonce.description }}</td>
+            <td>{{ annonce.year }}</td>
+            <td>{{ annonce.type }}</td>
+            <td>{{ annonce.band }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'annonces' %}">Retour à la liste</a>
+</div>
+{% endblock %}

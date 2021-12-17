@@ -1,0 +1,3 @@
+courses/projects/django-web-app/env/
+*.pyc
+__pycache__

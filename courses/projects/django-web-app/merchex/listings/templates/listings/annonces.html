@@ -1,0 +1,14 @@
+{% extends 'listings/base.html'%}
+
+{% block content %}
+<div id="annoncements">
+    <h1>Listings</h1>
+    <ul>
+        {% for annonce in annonces %}
+        <li>
+            <a href="{% url 'unique-annonce' annonce.id %}">{{ annonce.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
