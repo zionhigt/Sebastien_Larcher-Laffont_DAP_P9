@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = '127.0.0.1'
+EMAIL_PORT = 1025
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'listings'
+    'listings',
+    'authentication',
+    'blog'
 ]
 
 MIDDLEWARE = [
@@ -87,25 +92,17 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+    
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+        'NAME': 'authentication.validators.ContainsLetterValidator'
+    }
 ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'UTC'
 
@@ -120,8 +117,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTH_USER_MODEL = 'authentication.User'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'

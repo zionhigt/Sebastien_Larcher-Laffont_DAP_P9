@@ -5,8 +5,15 @@
     <h1>Bands</h1>
     <ul>
         {% for band in bands %}
-        <li>{{ band.name }}</li>
+        <li>
+            <a href="{% url 'unique-band' band.id%}">{{ band.name }}</a>
+            <a href="{% url 'update-band' band.id%}">[modifier]</a>
+            <a href="{% url 'delete-band' band.id%}">[supprimer]</a>
+        </li>
         {% endfor %}
     </ul>
+    <div>
+        <a href="{% url 'add-band' %}">Ajouter un groupe</a>
+    </div>
 </div>
 {% endblock %}

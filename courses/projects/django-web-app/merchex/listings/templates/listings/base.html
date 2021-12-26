@@ -12,8 +12,14 @@
     <nav>
         <ul>
             <li><a href="{% url 'annonces' %}">Home</a></li>
+            <li><a href="{% url 'home' %}">Blog</a></li>
             <li><a href="{% url 'contact' %}">Contacts</a></li>
-            <li><a href="#">Login</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'account' %}"><span>{{ user.username }}</span></a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Signup</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>

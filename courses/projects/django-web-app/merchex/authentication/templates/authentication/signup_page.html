@@ -1,0 +1,16 @@
+{% extends 'listings/base.html'%}
+
+{% block content %}
+<div id="signup">
+    <h1>S'inscrire</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Soumettre">
+    </form>
+    {{ form.errors }}
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -3,6 +3,10 @@
 {% block content %}
 <div id="annoncement">
     <h1>{{ annonce.title }}</h1>
+    <div>
+        <a href="{% url 'update-annoncement' annonce.id %}">Modifier</a>
+        <a href="{% url 'delete-annoncement' annonce.id %}">Supprimer</a>
+    </div>
     <table border>
         <tr>
             <th>Titre</th>
@@ -16,7 +20,7 @@
             <td>{{ annonce.description }}</td>
             <td>{{ annonce.year }}</td>
             <td>{{ annonce.type }}</td>
-            <td>{{ annonce.band }}</td>
+            <td><a href="{% url 'unique-band' annonce.band.id %}">{{ annonce.band }}</a></td>
         </tr>
     </table>
     <a href="{% url 'annonces' %}">Retour à la liste</a>

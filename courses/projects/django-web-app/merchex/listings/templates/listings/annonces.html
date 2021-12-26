@@ -7,8 +7,13 @@
         {% for annonce in annonces %}
         <li>
             <a href="{% url 'unique-annonce' annonce.id %}">{{ annonce.title }}</a>
+            <a href="{% url 'update-annoncement' annonce.id %}">[modifier]</a>
+            <a href="{% url 'delete-annoncement' annonce.id %}">[supprimer]</a>
         </li>
         {% endfor %}
     </ul>
+    <div>
+        <a href="{% url 'add-annoncement' %}">Ajouter une annonce</a>
+    </div>
 </div>
 {% endblock %}

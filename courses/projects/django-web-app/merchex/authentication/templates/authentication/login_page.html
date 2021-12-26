@@ -1,0 +1,16 @@
+{% extends 'listings/base.html'%}
+
+{% block content %}
+<div id="login">
+    <h1>Se connecter</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Soumettre">
+    </form>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+    <a href="{% url 'password_reset' %}">J'ai perdus mon mot de passe</a>
+</div>
+{% endblock %}

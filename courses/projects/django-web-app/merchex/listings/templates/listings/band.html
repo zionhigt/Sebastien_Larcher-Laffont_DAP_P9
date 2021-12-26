@@ -1,0 +1,28 @@
+{% extends 'listings/base.html'%}
+
+{% block content %}
+<div id="band">
+    <h1>{{ band.name }}</h1>
+    <div>
+        <a href="{% url 'update-band' band.id %}">Modifier</a>
+        <a href="{% url 'delete-band' band.id %}">Supprimer</a>
+    </div>
+    <table border>
+        <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Biography</th>
+            <th>Year formed</th>
+            <th>Official homepage</th>
+        </tr>
+        <tr>
+            <td>{{ band.name }}</td>
+            <td>{{ band.genre }}</td>
+            <td>{{ band.biography }}</td>
+            <td>{{ band.year_formed }}</td>
+            <td>{{ band.official_homepage }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'annonces' %}">Retour à la liste</a>
+</div>
+{% endblock %}
