@@ -1,3 +1,5 @@
 courses/projects/django-web-app/env/
+P9/env
 *.pyc
 __pycache__
+env
