@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -43,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'listings',
     'authentication',
-    'blog'
+    'blog',
+    'attachments',
+    'compressor'
 ]
 
 MIDDLEWARE = [
@@ -115,9 +118,21 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+LIBSASS_OUTPUT_STYLE = 'compressed'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_FINDERS = [
+    'compressor.finders.CompressorFinder'
+]
+COMPRESS_PRECOMPILERS = [
+    ('text/x-scss', 'django_libsass.SassCompiler')
+]
 
+STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'attachments/medias/')
+MEDIA_URL = '/attachments/medias/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

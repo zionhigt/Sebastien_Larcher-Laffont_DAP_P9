@@ -1,0 +1,26 @@
+nav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    background-color: #dadada;
+
+    ul {
+        width: 40%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        list-style-type: none;
+
+        li {
+            a {
+                text-decoration: none;
+                color: #222;
+            }
+        }
+    }
+}
+
+
+#annoncements, #bands {
+    padding: 0 15px;
+}

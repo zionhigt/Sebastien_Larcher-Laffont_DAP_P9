@@ -3,12 +3,14 @@
 {% block content %}
 <div id="signup">
     <h1>S'inscrire</h1>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ user_form.as_p }}
+        {{ image_form.as_p }}
         <input type="submit" value="Soumettre">
     </form>
-    {{ form.errors }}
+    {{ user_form.errors }}
+    {{ image_form.errors }}
     {% if message %}
     <p>{{ message }}</p>
     {% endif %}

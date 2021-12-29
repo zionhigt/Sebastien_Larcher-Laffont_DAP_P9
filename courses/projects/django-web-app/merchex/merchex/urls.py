@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.shortcuts import redirect
+from django.views.static import serve
+from django.conf import settings
 
 from listings import views as listingViews
 from django.contrib.auth.views import LoginView
@@ -79,6 +81,9 @@ bandspatterns = [
 ]
 
 urlpatterns = [
+    path('attachments/medias/<path:path>',
+     lambda request, path: serve(request, path, document_root=settings.MEDIA_ROOT, show_indexes=True),
+     name="media"),
     path('', lambda request: redirect('home'), name='root'),
     path('admin/', admin.site.urls),
     path('contact/', listingViews.contact, name="contact"),

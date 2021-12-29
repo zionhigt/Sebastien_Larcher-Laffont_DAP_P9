@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from attachments.models import ImageProfil
 
 # Create your models here.
 class User(AbstractUser):
@@ -12,5 +13,5 @@ class User(AbstractUser):
         (SUBSCRIBER, 'Abonné')
     )
 
-    image_profil = models.ImageField(verbose_name='Photo de profil', null=True, blank=True)
+    image_profil = models.ForeignKey(ImageProfil, verbose_name='Photo de profil', null=True, blank=True, on_delete=models.SET_NULL)
     role = models.CharField(max_length=30, choices=ROLE_CHOICES, verbose_name='Rôle')

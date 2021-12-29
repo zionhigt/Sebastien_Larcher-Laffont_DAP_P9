@@ -7,7 +7,7 @@
         <ul>
             <li><a href="{% url 'logout' %}">Se deconnecter</a></li>
             <li><a href="{% url 'password_change' %}">Modifier mon mot de passe</a></li>
-            <li><img src="{% static user.image_profil %}" alt="Profil {{ user.username}}"/></li>
+            <li><img src="{% url 'media' user.image_profil.image %}" alt="Profil {{ user.username}}"/></li>
         </ul>
     </div>
 </div>
