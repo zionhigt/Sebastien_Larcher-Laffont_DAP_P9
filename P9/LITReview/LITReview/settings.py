@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'attachments',
-    'core'
+    'core',
+    'review',
+    'ticket'
 ]
 
 MIDDLEWARE = [

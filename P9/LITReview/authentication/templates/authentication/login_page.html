@@ -1,16 +1,25 @@
 {% extends 'core/base.html'%}
 
 {% block content %}
-<div id="login">
-    <h1>Se connecter</h1>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Soumettre">
-    </form>
-    {% if message %}
-    <p>{{ message }}</p>
-    {% endif %}
-    <a href="{% url 'password_reset' %}">J'ai perdus mon mot de passe</a>
+<div class="spliter">
+    <div class="signup">
+        <h2>Inscrivez-vous maintenant</h2>
+        <a href="{% url 'signup' %}" class="btn btn-link">S'inscrire</a>
+    </div>
+    <div class="login">
+        <h2>Connectez-vous</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn-link btn-primary" type="submit" value="Se connecter">
+        </form>
+        {% if message %}
+        <div class="error-form">
+            <p>{{ message }}</p>
+            <p>{{ form.errors }}</p>
+        </div>
+        {% endif %}
+        <a href="{% url 'password_reset' %}">J'ai perdus mon mot de passe</a>
+    </div>
 </div>
 {% endblock %}

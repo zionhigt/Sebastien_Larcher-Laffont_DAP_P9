@@ -1,15 +1,12 @@
 {% extends 'core/base.html'%}
 
 {% block content %}
-<div class="signup single-form">
-    <h1>S'inscrire</h1>
+<div class="single-form">
+    <h1>Demander une review</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ user_form.as_p }}
-        <div class="btns">
-            <a href="{% url 'login' %}" class="btn btn-link">Retourner</a>
-            <input class="btn-link btn-primary" type="submit" value="S'inscrire">
-        </div>
+        {{ form.as_p }}
+        <input class="btn-link btn-primary" type="submit" value="Envoyer">
     </form>
     {% if message %}
     <div class="error-form">

@@ -1,8 +1,18 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-<div id="home">
-    <h1>Bienvenue</h1>
-    <p>Soyez le bienvenue sur notre site</p>
+<div class="container" id="home">
+    <div class="btns btns-title">
+        <a href="{% url 'create_ticket' %}" class="btn-link">Demander une critique</a>
+        <a href="{% url 'create_review' %}" class="btn-link">Créer une critique</a>
+    </div>
+    <div class="feed">
+        {% for review in reviews %}
+        {% include 'review/card.html' with data=review %}
+        {% endfor %}
+        {% for ticket in tickets %}
+        {% include 'ticket/card.html' with data=ticket %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

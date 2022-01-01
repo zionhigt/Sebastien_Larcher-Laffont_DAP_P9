@@ -1,15 +1,17 @@
 {% extends 'core/base.html'%}
 
 {% block content %}
-<div id="resetPassword" class="single-form">
-    <h1>Récupération du mot de passe</h1>
+<div class="single-form">
+    <h1>Créer une review</h1>
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Soumettre">
+        <input class="btn-link btn-primary" type="submit" value="Envoyer">
     </form>
     {% if message %}
-    <p>{{ message }}</p>
+    <div class="error-form">
+        <p>{{ message }}</p>
+    </div>
     {% endif %}
 </div>
 {% endblock %}

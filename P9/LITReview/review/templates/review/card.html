@@ -1,0 +1,26 @@
+<div class="card--review card">
+    <div>
+        <p>{{ data.user.username }}</p>
+        <p>{{ data.time_create }}</p>
+    </div>
+    <div class="rating">
+        <div class="stars stars-{{ data.rating }}">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+    </div>
+    <div class="headline">
+        <p>{{ data.headline }}</p>
+    </div>
+    <div class="body">
+        <p>{{ data.body }}</p>
+    </div>
+    {% if data.ticket %}
+    <div class="ticket-in-review">
+        {% include 'ticket/card.html' with data=data.ticket %}
+    </div>
+    {% endif %}
+</div>

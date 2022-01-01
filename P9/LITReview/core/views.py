@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.views.generic import View
+from ticket.models import Ticket
+from review.models import Review
 
 # Create your views here.
 class CoreViewsHome(View):
     def get(self, request):
         if not request.user.is_anonymous :
-            return render(request, 'core/home.html')
+            tickets = Ticket.objects.all()
+            reviews = Review.objects.all()
+            return render(request, 'core/home.html', {'reviews': reviews, 'tickets': tickets})
         return redirect('login')
 
 class CoreViewsContact(View):

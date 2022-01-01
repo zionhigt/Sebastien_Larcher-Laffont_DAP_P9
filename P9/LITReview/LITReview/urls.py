@@ -35,6 +35,9 @@ from core.views import CoreViewsHome
 from core.views import CoreViewsEmailSent
 from core.views import CoreViewsContact
 
+from ticket.views import CreateTicketView
+from review.views import CreateReviewView
+
 authpatterns = [
     path('auth/login', LoginView.as_view(
         template_name='authentication/login_page.html',
@@ -67,6 +70,15 @@ authpatterns = [
     path('auth/account', AccountView.as_view(), name="account")
 ]
 
+ticketpatterns = [
+    path('ticket/create', CreateTicketView.as_view(), name="create_ticket")
+
+]
+
+reviewpatterns = [
+    path('review/create', CreateReviewView.as_view(), name="create_review")
+
+]
 
 urlpatterns = [
     path('attachments/medias/<path:path>',
@@ -77,4 +89,4 @@ urlpatterns = [
     path('contact/', CoreViewsContact.as_view(), name="contact"),
     path('email-sent/', CoreViewsEmailSent.as_view(), name="email-sent"),
     path('home/', CoreViewsHome.as_view(), name="home")
-] + authpatterns
+] + authpatterns + ticketpatterns + reviewpatterns

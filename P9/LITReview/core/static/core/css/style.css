@@ -1,0 +1,187 @@
+body {
+    position: relative;
+    width: 100%;
+    box-sizing: content-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+header, nav {
+    width: 100%;
+}
+header {
+    margin-bottom: 5rem;
+}
+nav {
+    border-bottom: 2px solid#cacaca;
+    padding: 8px 0;
+}
+.nav--row {
+    display: flex;
+    flex-wrap: nowrap;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav--row * {
+    width: 33%;
+}
+.nav--row__title h2{
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    font-size: 1.3rem;
+}
+.nav--row__navigation ul {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    padding: 0;
+    list-style-type: none;
+    align-items: center;
+}
+
+.nav--row__navigation ul li {
+    width: auto;
+}
+.nav--row__navigation ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 0.95rem;
+}
+.nav--row__navigation ul li a:hover {
+    border-bottom: 1px solid #0a0a0a;
+}
+
+.spliter {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.signup, .spliter .login, .single-form {
+    width: 40%;
+}
+
+form, form p, .signup, .single-form, .container{
+    display: flex;
+    flex-flow: column nowrap;
+}
+.container .signup, .container .single-form {
+    align-self: center;
+}
+.container .signup h1, .container .single-form h1 {
+    text-align: center;
+}
+form p label {
+    margin-bottom: 8px;
+}
+
+form p input {
+    border-radius: 5px;
+}
+
+form input[type="submit"] {
+    align-self: flex-end;
+}
+
+.signup a.btn, .signup h2, .feed{
+    align-self: center;
+}
+
+.btn-link {
+    text-decoration: none;
+    border: 0.16rem solid #090909;
+    box-shadow: -0.2rem, 0.2rem, 0.8rem, rgba(0, 0, 0, 0.25);
+    background-color: white;
+    padding: 0.3rem 0.5rem;
+    border-radius: 10px;
+    color: rgb(47, 47, 47);
+    margin-left: 0.5rem;
+}
+.btn-primary {
+    background-color: rgb(4, 44, 104);
+    color: white;
+}
+.btns{
+    display: flex;
+    flex-wrap: nowrap;
+    align-self: flex-end;
+}
+.btns-title {
+    align-self: center;
+    width: 35%;
+    justify-content: space-around;
+    margin-bottom: 2.5rem;
+}
+.helptext, .error-form, .errorlist {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+.helptext {
+    display: none;
+    background-color: rgb(139, 217, 236);
+    color: rgb(4, 44, 104);
+}
+
+.error-form, .errorlist {
+    background-color: rgb(236, 188, 176);
+    color: rgb(214, 73, 8);
+}
+
+input:hover + :not(.helptext:empty) {
+    display: block;
+}
+
+form ul {
+    list-style-type: none;
+    margin: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.8rem;
+    color: rgb(4, 44, 104);
+}
+ .feed {
+     width: 60%;
+    }
+    
+.card {
+    padding: 0.6rem; 
+    border: 1px solid #cacaca;
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+ }
+ .card img {
+     width: 100%;
+     object-fit: contain;
+ }
+.stars i {
+    color: #cacaca;
+}
+.stars-1 i:nth-child(-n+1),
+.stars-2 i:nth-child(-n+2),
+.stars-3 i:nth-child(-n+3),
+.stars-4 i:nth-child(-n+4),
+.stars-5 i:nth-child(-n+5) {
+    color: yellow;
+}
+
+@media all and (min-width: 1024px) {
+    .signup, .spliter .login, .single-form {
+        width: 35%;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .signup, .spliter .login, .single-form {
+        width: 60%;
+    }
+}
+
+@media all and (max-width: 450px) {
+    .signup, .spliter .login, .single-form {
+        width: 80%;
+    }
+}
