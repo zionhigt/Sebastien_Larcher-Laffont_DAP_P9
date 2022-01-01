@@ -1,0 +1,56 @@
+{% extends 'core/base.html'%}
+{% load static %}
+{% block content %}
+<div id="users">
+    <div class="follow-user container">
+        {% if followable_users|length > 0 %}
+        <h3 class="text-black">Utilisateurs que je peux suivre</h3>
+        <ul>
+            {% for followable_user in followable_users %}
+            <li class="single-form">
+                <form action="{% url 'following' followable_user.id %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="form" value="follow">
+                    {% if followable_user.image_profil %}
+                    <img class="circle-img" src="{% url 'media' followable_user.image_profil %}" alt="">
+                    {% else %}
+                    <img class="circle-img" src="https://via.placeholder.com/300/CACACA/000000/?text={{ followable_user.username|make_list|first|upper }}" alt="">
+                    {% endif %}
+                    <p>{{ followable_user.username }}</p>
+                    <input class="btn-primary" type="submit" value="S'abonner" />
+                </form>
+            </li>
+            
+            {% endfor %}
+        </ul>
+        {% else %}
+        <h3 class="text-grey">Utilisateurs que je peux suivre</h3>
+    </div>
+    {% endif %}
+    <div class="follow-user container">
+        {% if i_follow_users|length > 0 %}
+        <h3 class="text-black">Utilisateurs suivis</h3>
+        <ul>
+            {% for i_f_user in i_follow_users %}
+            <li class="single-form">
+                <form action="{% url 'following' i_f_user.id %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="form" value="unfollow">
+                    {% if i_f_user.image_profil %}
+                    <img class="circle-img" src="{% url 'media' i_f_user.image_profil %}" alt="">
+                    {% else %}
+                    <img class="circle-img" src="https://via.placeholder.com/300/CACACA/000000/?text={{ i_f_user.username|make_list|first|upper }}" alt="">
+                    {% endif %}
+                    <p>{{ i_f_user.username }}</p>
+                    <input class="btn-grey" type="submit" value="Désabonner" />
+                </form>
+            </li>
+            
+            {% endfor %}
+        </ul>
+        {% else %}
+        <h3 class="text-grey">Utilisateurs suivis</h3>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

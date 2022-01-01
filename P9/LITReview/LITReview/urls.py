@@ -32,11 +32,14 @@ from authentication.views import SignupView
 from authentication.views import AccountView
 
 from core.views import CoreViewsHome
+from core.views import CoreViewsPost
 from core.views import CoreViewsEmailSent
 from core.views import CoreViewsContact
 
 from ticket.views import CreateTicketView
 from review.views import CreateReviewView
+
+from followers.views import FollowersView
 
 authpatterns = [
     path('auth/login', LoginView.as_view(
@@ -88,5 +91,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('contact/', CoreViewsContact.as_view(), name="contact"),
     path('email-sent/', CoreViewsEmailSent.as_view(), name="email-sent"),
-    path('home/', CoreViewsHome.as_view(), name="home")
+    path('home/', CoreViewsHome.as_view(), name="home"),
+    path('post/', CoreViewsPost.as_view(), name="post"),
+    path('follow/', FollowersView.as_view(), name="followers_list"),
+    path('follow/<int:id>', FollowersView.as_view(), name="following"),
 ] + authpatterns + ticketpatterns + reviewpatterns

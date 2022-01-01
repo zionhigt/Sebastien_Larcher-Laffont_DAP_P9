@@ -21,8 +21,8 @@
                     {% if user.is_authenticated %}
                     <ul>
                         <li class="feed--link"><a href="{% url 'home' %}">Flux</a></li>
-                        <li class="post--link"><a href="">Posts</a></li>
-                        <li class="subscribe--link"><a href="">Abonnements</a></li>
+                        <li class="post--link"><a href="{% url 'post' %}">Posts</a></li>
+                        <li class="subscribe--link"><a href="{% url 'followers_list' %}">Abonnements</a></li>
                         <li class="logout--link"><a href="{% url 'logout' %}">Se déconnecter</a></li>
                     </ul>
                     {% endif %}

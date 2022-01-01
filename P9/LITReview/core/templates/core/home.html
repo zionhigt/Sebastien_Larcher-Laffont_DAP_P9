@@ -3,15 +3,21 @@
 {% block content %}
 <div class="container" id="home">
     <div class="btns btns-title">
-        <a href="{% url 'create_ticket' %}" class="btn-link">Demander une critique</a>
-        <a href="{% url 'create_review' %}" class="btn-link">Créer une critique</a>
+        <div>
+            <a href="{% url 'create_ticket' %}" class="btn-link">Demander une critique</a>
+        </div>
+        <div>
+            <a href="{% url 'create_review' %}" class="btn-link">Créer une critique</a>
+        </div>
     </div>
     <div class="feed">
-        {% for review in reviews %}
-        {% include 'review/card.html' with data=review %}
-        {% endfor %}
-        {% for ticket in tickets %}
-        {% include 'ticket/card.html' with data=ticket %}
+        {% for list_result in list_results %}
+        {% if list_result.model == 'review.Review' %}
+        {% include 'review/card.html' with data=list_result %}
+        {% endif %}
+        {% if list_result.model == 'ticket.Ticket' %}
+        {% include 'ticket/card.html' with data=list_result %}
+        {% endif %}
         {% endfor %}
     </div>
 </div>

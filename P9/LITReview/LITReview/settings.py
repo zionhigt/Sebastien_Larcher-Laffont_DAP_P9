@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'attachments',
     'core',
     'review',
-    'ticket'
+    'ticket',
+    'followers'
 ]
 
 MIDDLEWARE = [

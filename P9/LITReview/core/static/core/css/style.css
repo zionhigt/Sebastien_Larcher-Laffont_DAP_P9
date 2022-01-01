@@ -14,6 +14,13 @@ nav {
     border-bottom: 2px solid#cacaca;
     padding: 8px 0;
 }
+.text-grey {
+    color: #cacaca;
+}
+
+.tex-black {
+    color: black;
+}
 .nav--row {
     display: flex;
     flex-wrap: nowrap;
@@ -67,7 +74,7 @@ form, form p, .signup, .single-form, .container{
     display: flex;
     flex-flow: column nowrap;
 }
-.container .signup, .container .single-form {
+.container .signup, .container .single-form, .logout {
     align-self: center;
 }
 .container .signup h1, .container .single-form h1 {
@@ -85,8 +92,17 @@ form input[type="submit"] {
     align-self: flex-end;
 }
 
-.signup a.btn, .signup h2, .feed{
+.signup a.btn, .signup h2, .feed, .logout{
     align-self: center;
+}
+
+.logout *{
+    width: auto;
+    text-align: center;
+}
+
+.logout a {
+    margin: 0;
 }
 
 .btn-link {
@@ -101,7 +117,13 @@ form input[type="submit"] {
 }
 .btn-primary {
     background-color: rgb(4, 44, 104);
+    border: 1px solid rgb(4, 44, 104);
     color: white;
+}
+.btn-grey {
+    background-color: #cacaca;
+    border: 2px solid #cacaca;
+    color: black;
 }
 .btns{
     display: flex;
@@ -110,9 +132,17 @@ form input[type="submit"] {
 }
 .btns-title {
     align-self: center;
-    width: 35%;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-bottom: 2.5rem;
+}
+.btns-title div {
+    height: 100%;
+    width: auto;
+    text-align: center;
+}
+.btns-title div a {
+    display: inline-block;
+    margin: 0; 
 }
 .helptext, .error-form, .errorlist {
     padding: 0.5rem 1rem;
@@ -143,20 +173,20 @@ form ul {
     font-size: 0.8rem;
     color: rgb(4, 44, 104);
 }
- .feed {
-     width: 60%;
-    }
-    
+.feed, .btns-title {
+    width: 60%;
+}
+
 .card {
     padding: 0.6rem; 
     border: 1px solid #cacaca;
     border-radius: 10px;
     margin-bottom: 1.2rem;
- }
- .card img {
-     width: 100%;
-     object-fit: contain;
- }
+}
+.card img {
+    width: 100%;
+    object-fit: contain;
+}
 .stars i {
     color: #cacaca;
 }
@@ -166,6 +196,41 @@ form ul {
 .stars-4 i:nth-child(-n+4),
 .stars-5 i:nth-child(-n+5) {
     color: yellow;
+}
+
+.follow-user h3 {
+    text-align: center;
+}
+.follow-user form {
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+    border-radius: 2rem;
+    margin-bottom: 0.6rem;
+    overflow: hidden;
+    box-sizing: content-box;
+    box-shadow: -0.2rem 0.2rem 0.8rem rgba(0, 0, 0, 0.4);
+    height: 3rem;
+    
+}
+.follow-user form p {
+    display: block;
+    max-width: 50%;
+    margin: 0;
+    margin-right: 2rem;
+    font-size: 1.2rem;
+}
+.follow-user form img.circle-img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    border-radius: 50%;
+}
+.follow-user form input {
+    height: 3rem;
+    border: none;
+    padding: 1rem 0.5rem;
+    font-size: 0.8rem;
 }
 
 @media all and (min-width: 1024px) {

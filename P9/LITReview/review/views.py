@@ -15,6 +15,7 @@ class CreateReviewView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             without_user = form.save(commit=False)
+            without_user.rating = int(form.cleaned_data['rating_choices'])
             without_user.user = User.objects.get(id=request.user.id)
             without_user.save()
             return redirect('home')
