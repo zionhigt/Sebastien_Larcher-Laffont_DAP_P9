@@ -12,9 +12,13 @@
     <div>
         <img src="{% url 'media' data.image %}" alt="Image du ticket {{ data.title }}"/>
     </div>
-    {% if not data.has_review and not edit %}
     <div class="btn-ticket-container btns">
+    {% if not data.has_review and not edit %}
         <a href="{% url 'create_review' data.id %}" class="btn btn-link btn-primary btn-ticket">Créer une critique</a>
-    </div>
     {% endif %}
+    {% if manage %}
+        <a class="btn btn-link btn-manage" href="{% url 'update_ticket' data.id %}">Éditer</a>
+        <a class="btn btn-link btn-manage" href="{% url 'delete_ticket_confirm' data.id %}">Suprimer</a>
+    {% endif %}
+    </div>
 </div>

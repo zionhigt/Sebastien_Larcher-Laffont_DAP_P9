@@ -29,7 +29,8 @@ class UpdateTicketView(View):
             if request.user.id == ticket.user.id:
                 form = self.form_class(instance=ticket)
                 return render(request, 'ticket/update_form.html', {
-                    'form': form
+                    'form': form,
+                    'ticket': ticket
                 })
         return redirect('login')
 
@@ -42,6 +43,26 @@ class UpdateTicketView(View):
                     form.save()
                     return redirect('post')
                 return render(request, 'ticket/update_form.html', {
-                    'form': form
+                    'form': form,
+                    'ticket': ticket
                 })
         return redirect('login')
+
+
+
+def ticket_delete_confirm(request, id):
+    ticket = Ticket.objects.get(id=id)
+    if not request.user.is_anonymous:
+        if request.user.id == ticket.user.id:
+            return render(request, 'ticket/delete_confirm.html', {
+                'id': id
+            })
+    return redirect('login')
+
+def ticket_delete_by_id(request, id):
+    ticket = Ticket.objects.get(id=id)
+    if not request.user.is_anonymous:
+        if request.user.id == ticket.user.id:
+            ticket.delete()
+            return redirect('post')
+    return redirect('login')

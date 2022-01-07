@@ -68,7 +68,8 @@ class UpdateReviewView(View):
                 form.fields['rating_choices'].initial = int(review.rating)
                 print(form.fields['rating_choices'])
                 return render(request, 'review/update_form.html', {
-                    'form': form
+                    'form': form,
+                    'ticket': review.ticket
                 })
         return redirect('login')
 
@@ -83,12 +84,13 @@ class UpdateReviewView(View):
                     form_without_rating.save()
                     return redirect('post')
                 return render(request, 'review/update_form.html', {
-                    'form': form
+                    'form': form,
+                    'ticket': form_without_rating.ticket
                 })
         return redirect('login')
 
 
-def delete_confirm(request, id):
+def review_delete_confirm(request, id):
     review = Review.objects.get(id=id)
     if not request.user.is_anonymous:
         if request.user.id == review.user.id:
@@ -98,11 +100,14 @@ def delete_confirm(request, id):
             })
     return redirect('login')
 
-def delete_by_id(request, id):
+def review_delete_by_id(request, id):
     review = Review.objects.get(id=id)
     print(review)
     if not request.user.is_anonymous:
         if request.user.id == review.user.id:
+            ticket = Ticket.objects.get(id=review.ticket.id)
+            ticket.has_review = False
+            ticket.save()
             review.delete()
             return redirect('post')
     return redirect('login')

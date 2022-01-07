@@ -94,7 +94,7 @@ form p input {
     align-self: center;
 }
 
-form input[type="submit"], a.btn-ticket{
+form input[type="submit"], a.btn-ticket, a.btn-manage{
     align-self: flex-end;
 }
 .logout *{
@@ -121,7 +121,7 @@ form input[type="submit"], a.btn-ticket{
     border: 1px solid rgb(4, 44, 104);
     color: white;
 }
-.btn-ticket-container {
+.btn-ticket-container, .btn-container-manage {
     margin: 0.566rem, 0.566rem;
     justify-content: flex-end;
 }

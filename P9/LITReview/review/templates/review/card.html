@@ -20,7 +20,13 @@
     </div>
     {% if data.ticket %}
     <div class="ticket-in-review">
-        {% include 'ticket/card.html' with data=data.ticket edit=False %}
+        {% include 'ticket/card.html' with data=data.ticket edit=edit manage=False %}
+    </div>
+    {% endif %}
+    {% if manage %}
+    <div class="btns btn-container-manage">
+        <a class="btn btn-link btn-manage" href="{% url 'update_review' data.id %}">Éditer</a>
+        <a class="btn btn-link btn-manage" href="{% url 'delete_review_confirm' data.id %}">Suprimer</a>
     </div>
     {% endif %}
 </div>

@@ -11,64 +11,14 @@
         </div>
     </div>
     <div class="feed">
-        <table border>
-            <caption>Mes Critiques</caption>
-            <tr>
-                <th>Titre</th>
-                <th>Contenu</th>
-                <th>Note</th>
-                <th>Ticket</th>
-                <th>*</th>
-                <th>*</th>
-            </tr>
-            {% for review in reviews %}
-            <tr>
-                <td>
-                    {{ review.headline }}
-                </td>
-                <td>
-                    {{ review.body }}
-                </td>
-                <td>
-                    {{ review.rating }}
-                </td>
-                <td>
-                    {{ review.ticket }}
-                </td>
-                <td>
-                    <a href="{% url 'update_review' review.id %}">Éditer</a>
-                </td>
-                <td>
-                    <a href="{% url 'delete_review_confirm' review.id %}">Suprimer</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-        <table border>
-            <caption>Mes demandes de Critiques</caption>
-            <tr>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>*</th>
-            </tr>
-            {% for ticket in tickets %}
-            <tr>
-                <td>
-                    {{ ticket.title }}
-                </td>
-                <td>
-                    {{ ticket.description }}
-                </td>
-                <td>
-                    {{ ticket.image }}
-                </td>
-                <td>
-                    <a href="{% url 'update_ticket' ticket.id %}">Éditer</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+        <h2>Mes Critiques</h2>
+        {% for review in reviews %}
+        {% include 'review/card.html' with data=review edit=False manage=True %}
+        {% endfor %}
+        <h2>Mes demandes de Critiques</h2>
+        {% for ticket in tickets %}
+        {% include 'ticket/card.html' with data=ticket edit=False manage=True %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
