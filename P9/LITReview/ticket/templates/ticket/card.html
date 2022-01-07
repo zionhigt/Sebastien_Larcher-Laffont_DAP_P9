@@ -1,7 +1,7 @@
 <div class="card--ticket card">
-    <div>
-        <p>{{ data.user.username }}</p>
-        <p>{{ data.time_created }}</p>
+    <div class="card--head">
+        <p>{{ data.user.username }} a demandé une critique</p>
+        <p class="head--date">{{ data.time_created }}</p>
     </div>
     <div class="title">
         <p>{{ data.title }}</p>
@@ -12,4 +12,9 @@
     <div>
         <img src="{% url 'media' data.image %}" alt="Image du ticket {{ data.title }}"/>
     </div>
+    {% if not data.has_review and not edit %}
+    <div class="btn-ticket-container btns">
+        <a href="{% url 'create_review' data.id %}" class="btn btn-link btn-primary btn-ticket">Créer une critique</a>
+    </div>
+    {% endif %}
 </div>

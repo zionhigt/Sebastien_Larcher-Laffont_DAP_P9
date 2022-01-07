@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container" id="post">
+    <div class="btns btns-title">
+        <div>
+            <a href="{% url 'create_ticket' %}" class="btn-link">Demander une critique</a>
+        </div>
+        <div>
+            <a href="{% url 'create_new_review' %}" class="btn-link">Créer une critique</a>
+        </div>
+    </div>
+    <div class="feed">
+        <table border>
+            <caption>Mes Critiques</caption>
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Note</th>
+                <th>Ticket</th>
+                <th>*</th>
+                <th>*</th>
+            </tr>
+            {% for review in reviews %}
+            <tr>
+                <td>
+                    {{ review.headline }}
+                </td>
+                <td>
+                    {{ review.body }}
+                </td>
+                <td>
+                    {{ review.rating }}
+                </td>
+                <td>
+                    {{ review.ticket }}
+                </td>
+                <td>
+                    <a href="{% url 'update_review' review.id %}">Éditer</a>
+                </td>
+                <td>
+                    <a href="{% url 'delete_review_confirm' review.id %}">Suprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <table border>
+            <caption>Mes demandes de Critiques</caption>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>*</th>
+            </tr>
+            {% for ticket in tickets %}
+            <tr>
+                <td>
+                    {{ ticket.title }}
+                </td>
+                <td>
+                    {{ ticket.description }}
+                </td>
+                <td>
+                    {{ ticket.image }}
+                </td>
+                <td>
+                    <a href="{% url 'update_ticket' ticket.id %}">Éditer</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

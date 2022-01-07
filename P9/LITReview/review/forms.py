@@ -6,4 +6,4 @@ class CreateReviewForm(forms.ModelForm):
     rating_choices = forms.ChoiceField(choices=RATING_CHOISES, widget=forms.RadioSelect)
     class Meta:
         model = Review
-        fields = ('ticket', 'rating_choices', 'headline', 'body')
+        fields = ('rating_choices', 'headline', 'body')

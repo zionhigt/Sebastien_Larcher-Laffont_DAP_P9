@@ -2,17 +2,9 @@
 
 {% block content %}
 <div class="single-form">
-    <h1>Créer une review</h1>
-    {% if ticket %}
-        {% include 'ticket/card.html' with data=ticket edit=True %}
-    {% endif %}
+    <h1>Modifier ma demande de review</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {% if ticket_form %}
-        <h3>Ticket</h3>
-        {{ ticket_form.as_p }}
-        {% endif %}
-        <h3>Critique</h3>
         {{ form.as_p }}
         <input class="btn-link btn-primary" type="submit" value="Envoyer">
     </form>

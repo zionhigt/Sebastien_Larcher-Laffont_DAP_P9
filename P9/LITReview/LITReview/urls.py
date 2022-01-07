@@ -36,8 +36,9 @@ from core.views import CoreViewsPost
 from core.views import CoreViewsEmailSent
 from core.views import CoreViewsContact
 
-from ticket.views import CreateTicketView
-from review.views import CreateReviewView
+from ticket.views import CreateTicketView, UpdateTicketView
+from review.views import CreateReviewView, UpdateReviewView
+from review.views import delete_confirm, delete_by_id
 
 from followers.views import FollowersView
 
@@ -74,12 +75,17 @@ authpatterns = [
 ]
 
 ticketpatterns = [
-    path('ticket/create', CreateTicketView.as_view(), name="create_ticket")
+    path('ticket/create', CreateTicketView.as_view(), name="create_ticket"),
+    path('ticket/update/<int:id>', UpdateTicketView.as_view(), name="update_ticket")
 
 ]
 
 reviewpatterns = [
-    path('review/create', CreateReviewView.as_view(), name="create_review")
+    path('review/create/', CreateReviewView.as_view(), name="create_new_review"),
+    path('review/create/<int:ticket_id>', CreateReviewView.as_view(), name="create_review"),
+    path('review/update/<int:id>', UpdateReviewView.as_view(), name="update_review"),
+    path('review/delete/confirm/<int:id>', delete_confirm, name="delete_review_confirm"),
+    path('review/delete/<int:id>', delete_by_id, name="delete_review"),
 
 ]
 

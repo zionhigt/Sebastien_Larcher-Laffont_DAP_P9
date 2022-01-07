@@ -10,6 +10,7 @@ header, nav {
 header {
     margin-bottom: 5rem;
 }
+
 nav {
     border-bottom: 2px solid#cacaca;
     padding: 8px 0;
@@ -88,14 +89,14 @@ form p input {
     border-radius: 5px;
 }
 
-form input[type="submit"] {
-    align-self: flex-end;
-}
 
 .signup a.btn, .signup h2, .feed, .logout{
     align-self: center;
 }
 
+form input[type="submit"], a.btn-ticket{
+    align-self: flex-end;
+}
 .logout *{
     width: auto;
     text-align: center;
@@ -120,6 +121,11 @@ form input[type="submit"] {
     border: 1px solid rgb(4, 44, 104);
     color: white;
 }
+.btn-ticket-container {
+    margin: 0.566rem, 0.566rem;
+    justify-content: flex-end;
+}
+
 .btn-grey {
     background-color: #cacaca;
     border: 2px solid #cacaca;
@@ -187,6 +193,19 @@ form ul {
     width: 100%;
     object-fit: contain;
 }
+
+.headline, .title {
+    font-weight: bold;
+}
+.card--head {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.head--date {
+    font-size: 0.8rem;
+    color: #aaaaaa;
+}
 .stars i {
     color: #cacaca;
 }
@@ -231,6 +250,16 @@ form ul {
     border: none;
     padding: 1rem 0.5rem;
     font-size: 0.8rem;
+}
+ul#id_rating_choices {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-around;
+}
+
+ul#id_rating_choices li {
+    /* margin-right: 1rem; */
 }
 
 @media all and (min-width: 1024px) {

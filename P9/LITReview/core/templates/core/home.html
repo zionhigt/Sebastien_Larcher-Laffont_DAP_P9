@@ -7,18 +7,23 @@
             <a href="{% url 'create_ticket' %}" class="btn-link">Demander une critique</a>
         </div>
         <div>
-            <a href="{% url 'create_review' %}" class="btn-link">Créer une critique</a>
+            <a href="{% url 'create_new_review' %}" class="btn-link">Créer une critique</a>
         </div>
     </div>
     <div class="feed">
-        {% for list_result in list_results %}
-        {% if list_result.model == 'review.Review' %}
-        {% include 'review/card.html' with data=list_result %}
+        {% if list_results|length %}
+            {% for list_result in list_results %}
+                {% if list_result.model == 'review.Review' %}
+                    {% include 'review/card.html' with data=list_result %}
+                {% endif %}
+                {% if list_result.model == 'ticket.Ticket' %}
+                    {% include 'ticket/card.html' with data=list_result edit=False %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h1>Votre journal est vide</h1>
+            <p>Vous pouvez Créer un post ou vous abonner pour suivre d'autres utilisateurs</p>
         {% endif %}
-        {% if list_result.model == 'ticket.Ticket' %}
-        {% include 'ticket/card.html' with data=list_result %}
-        {% endif %}
-        {% endfor %}
     </div>
 </div>
 {% endblock %}

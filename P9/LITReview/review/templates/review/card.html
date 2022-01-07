@@ -1,7 +1,7 @@
 <div class="card--review card">
-    <div>
-        <p>{{ data.user.username }}</p>
-        <p>{{ data.time_created }}</p>
+    <div class="card--head">
+        <p>{{ data.user.username }} a créé une critique</p>
+        <p class="head--date">{{ data.time_created }}</p>
     </div>
     <div class="rating">
         <div class="stars stars-{{ data.rating }}">
@@ -20,7 +20,7 @@
     </div>
     {% if data.ticket %}
     <div class="ticket-in-review">
-        {% include 'ticket/card.html' with data=data.ticket %}
+        {% include 'ticket/card.html' with data=data.ticket edit=False %}
     </div>
     {% endif %}
 </div>
