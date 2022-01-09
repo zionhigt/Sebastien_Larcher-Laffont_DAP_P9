@@ -6,7 +6,7 @@ from authentication.models import User
 from review.models import Review
 from ticket.models import Ticket
 
-# Create your views here.
+
 class CreateReviewView(View):
     form_class = CreateReviewForm
     ticket_form = CreateTicketForm
@@ -22,13 +22,17 @@ class CreateReviewView(View):
         if not request.user.is_anonymous:
             form = self.form_class()
             ticket_form = self.ticket_form()
-            ticket= None
+            ticket = None
             if ticket_id is not None:
                 review_ticket = self.get_ticket_by_id(ticket_id)
                 if review_ticket is not None:
                     ticket = review_ticket
                     ticket_form = None
-            return render(request, 'review/create_page.html', {'form': form, 'ticket': ticket, 'ticket_form': ticket_form})
+            return render(request, 'review/create_page.html', {
+                'form': form,
+                'ticket': ticket,
+                'ticket_form': ticket_form
+            })
         return redirect('login')
 
     def post(self, request, ticket_id=None):
@@ -42,7 +46,6 @@ class CreateReviewView(View):
                 ticket = None
                 if ticket_id:
                     ticket = self.get_ticket_by_id(ticket_id)
-                    print(ticket)
                 else:
                     ticket_form = self.ticket_form(request.POST, request.FILES)
                     if ticket_form.is_valid():
@@ -54,19 +57,21 @@ class CreateReviewView(View):
                     ticket.save()
                 without_user.save()
                 return redirect('home')
-            return render(request, 'review/create_page.html', {'form': form})
+            return render(request, 'review/create_page.html', {
+                'form': form
+            })
         return redirect('login')
 
 
 class UpdateReviewView(View):
     form_class = CreateReviewForm
+
     def get(self, request, id):
         review = Review.objects.get(id=id)
         if not request.user.is_anonymous:
             if request.user.id == review.user.id:
                 form = self.form_class(instance=review)
                 form.fields['rating_choices'].initial = int(review.rating)
-                print(form.fields['rating_choices'])
                 return render(request, 'review/update_form.html', {
                     'form': form,
                     'ticket': review.ticket
@@ -94,15 +99,14 @@ def review_delete_confirm(request, id):
     review = Review.objects.get(id=id)
     if not request.user.is_anonymous:
         if request.user.id == review.user.id:
-            
             return render(request, 'review/delete_confirm.html', {
                 'id': id
             })
     return redirect('login')
 
+
 def review_delete_by_id(request, id):
     review = Review.objects.get(id=id)
-    print(review)
     if not request.user.is_anonymous:
         if request.user.id == review.user.id:
             ticket = Ticket.objects.get(id=review.ticket.id)

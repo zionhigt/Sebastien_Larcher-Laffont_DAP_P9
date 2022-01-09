@@ -3,7 +3,7 @@ from django.views.generic import View
 from authentication.models import User
 from followers.models import UserFollows
 
-# Create your views here.
+
 class FollowersView(View):
 
     def get(self, request):
@@ -20,7 +20,7 @@ class FollowersView(View):
                 'followable_users': followable_users,
                 'i_follow_users': i_follow_users
                 })
-    
+
     def post(self, request, id):
         if not request.user.is_anonymous:
             user_follow = UserFollows()

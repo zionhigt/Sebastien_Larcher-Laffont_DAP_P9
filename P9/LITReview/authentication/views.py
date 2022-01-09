@@ -1,21 +1,23 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout
 from django.views.generic import View
 
 from authentication.forms import SignupForm
-from authentication.models import User
+
 
 class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect('login')
 
+
 class AccountView(View):
     def get(self, request):
         if not request.user.is_anonymous:
             return render(request, 'authentication/user_page.html', {'user': request.user})
         return redirect('login')
+
 
 class SignupView(View):
     template_name = 'authentication/signup_page.html'

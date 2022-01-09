@@ -1,12 +1,11 @@
 from django.db import models
-from django import forms
 from django.conf import settings
 from ticket.models import Ticket
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Create your models here.
+
 class Review(models.Model):
-    
+
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(validators=[
         MinValueValidator(0),

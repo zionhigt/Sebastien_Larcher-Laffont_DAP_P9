@@ -4,13 +4,15 @@ from ticket.forms import CreateTicketForm
 from authentication.models import User
 from ticket.models import Ticket
 
-# Create your views here.
+
 class CreateTicketView(View):
     form_class = CreateTicketForm
 
     def get(self, request):
         form = self.form_class()
-        return render(request, 'ticket/create_page.html', {'form': form})
+        return render(request, 'ticket/create_page.html', {
+            'form': form
+        })
 
     def post(self, request):
         form = self.form_class(request.POST, request.FILES)
@@ -19,10 +21,14 @@ class CreateTicketView(View):
             without_user.user = User.objects.get(id=request.user.id)
             without_user.save()
             return redirect('home')
-        return render(request, 'ticket/create_page.html', {'form': form})
+        return render(request, 'ticket/create_page.html', {
+            'form': form
+        })
+
 
 class UpdateTicketView(View):
     form_class = CreateTicketForm
+
     def get(self, request, id):
         ticket = Ticket.objects.get(id=id)
         if not request.user.is_anonymous:
@@ -49,7 +55,6 @@ class UpdateTicketView(View):
         return redirect('login')
 
 
-
 def ticket_delete_confirm(request, id):
     ticket = Ticket.objects.get(id=id)
     if not request.user.is_anonymous:
@@ -58,6 +63,7 @@ def ticket_delete_confirm(request, id):
                 'id': id
             })
     return redirect('login')
+
 
 def ticket_delete_by_id(request, id):
     ticket = Ticket.objects.get(id=id)

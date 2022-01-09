@@ -6,7 +6,7 @@ from review.models import Review
 from followers.models import UserFollows
 from authentication.models import User
 
-# Create your views here.
+
 class CoreViewsPost(View):
     def get_post_list(self, user):
         tickets = []
@@ -22,7 +22,7 @@ class CoreViewsPost(View):
         return feed_list
 
     def get(self, request):
-        if not request.user.is_anonymous :
+        if not request.user.is_anonymous:
             post_list = self.get_post_list(request.user)
             list_results = {
                 'reviews': [item for item in post_list if item.model == "review.Review"],
@@ -33,7 +33,8 @@ class CoreViewsPost(View):
                 'tickets': list_results["tickets"]
                 })
         return redirect('login')
-  
+
+
 class CoreViewsHome(View):
     def get_personal_feed_list(self, user):
         tickets = []
@@ -53,9 +54,8 @@ class CoreViewsHome(View):
         followed_users_ids = [user.followed_user.id for user in followed_users]
         followed_feed_tickets = Ticket.objects.filter(user__id__in=followed_users_ids)
         followed_feed_reviews = Review.objects.filter(user__id__in=followed_users_ids)
-        print(followed_feed_tickets)
         return (followed_feed_reviews, followed_feed_tickets)
-    
+
     def get_followed_users(self, user):
         followed_users = UserFollows.objects.filter(user=user)
         return followed_users
@@ -85,35 +85,10 @@ class CoreViewsHome(View):
         return sorted(list_results, key=lambda x: x.time_created, reverse=True)
 
     def get(self, request):
-        if not request.user.is_anonymous :
+        if not request.user.is_anonymous:
             user = User.objects.get(id=request.user.id)
             list_results = self.get_feed_list(user)
-            return render(request, 'core/home.html', {'list_results': list_results})
-        return redirect('login')
-
-class CoreViewsContact(View):
-    def post(self, request):
-        form = ContactUsForm(request.POST)
-        if form.is_valid():
-            send_mail(
-                subject=f'Message from {form.cleaned_data["name"] or "anonyme"} via MerchEx Contact Us Form',
-                message=form.cleaned_data['message'],
-                from_email=form.cleaned_data['email'],
-                recipient_list=['me@dev.com']
-            )
-            return redirect('email-sent')
-        else:
-            form = ContactUsForm()
-            return render(request, 'core/contact.html', {
-                'form': form
+            return render(request, 'core/home.html', {
+                'list_results': list_results
             })
-    
-    def get(self, request):
-        form = ContactUsForm()
-        return render(request, 'core/contact.html', {
-            'form': form
-        })
-
-class CoreViewsEmailSent(View):
-    def get(self, request):
-        return render(request, 'core/email-sent.html')
+        return redirect('login')

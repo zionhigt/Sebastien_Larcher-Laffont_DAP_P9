@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-# Create your models here.
+
 class Ticket(models.Model):
     title = models.CharField(max_length=128)
     description = models.TextField(max_length=2048, blank=True, null=True)

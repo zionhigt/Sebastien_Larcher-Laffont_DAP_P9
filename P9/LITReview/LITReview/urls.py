@@ -33,8 +33,6 @@ from authentication.views import AccountView
 
 from core.views import CoreViewsHome
 from core.views import CoreViewsPost
-from core.views import CoreViewsEmailSent
-from core.views import CoreViewsContact
 
 from ticket.views import CreateTicketView, UpdateTicketView
 from ticket.views import ticket_delete_confirm, ticket_delete_by_id
@@ -66,7 +64,6 @@ authpatterns = [
     path('auth/password/change/confirm/done', PasswordChangeDoneView.as_view(
         template_name='authentication/change_password_confirm_done.html'
     ), name="password_change_done"),
-        
     path('auth/logout', LogoutView.as_view(
         template_name='authentication/logout_page.html',
         redirect_field_name="login"
@@ -93,13 +90,13 @@ reviewpatterns = [
 ]
 
 urlpatterns = [
-    path('attachments/medias/<path:path>',
-     lambda request, path: serve(request, path, document_root=settings.MEDIA_ROOT),
-     name="media"),
+    path(
+        'core/medias/<path:path>',
+        lambda request, path: serve(request, path, document_root=settings.MEDIA_ROOT),
+        name="media"
+    ),
     path('', lambda request: redirect('home'), name='root'),
     path('admin/', admin.site.urls),
-    path('contact/', CoreViewsContact.as_view(), name="contact"),
-    path('email-sent/', CoreViewsEmailSent.as_view(), name="email-sent"),
     path('home/', CoreViewsHome.as_view(), name="home"),
     path('post/', CoreViewsPost.as_view(), name="post"),
     path('follow/', FollowersView.as_view(), name="followers_list"),
