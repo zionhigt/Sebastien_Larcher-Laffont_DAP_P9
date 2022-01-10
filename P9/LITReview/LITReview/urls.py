@@ -75,8 +75,8 @@ authpatterns = [
 ticketpatterns = [
     path('ticket/create', CreateTicketView.as_view(), name="create_ticket"),
     path('ticket/update/<int:id>', UpdateTicketView.as_view(), name="update_ticket"),
-    path('review/delete/confirm/<int:id>', ticket_delete_confirm, name="delete_ticket_confirm"),
-    path('review/delete/<int:id>', ticket_delete_by_id, name="delete_ticket")
+    path('ticket/delete/confirm/<int:id>', ticket_delete_confirm, name="delete_ticket_confirm"),
+    path('ticket/delete/<int:id>', ticket_delete_by_id, name="delete_ticket")
 
 ]
 

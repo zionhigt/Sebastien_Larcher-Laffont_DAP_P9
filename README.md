@@ -17,8 +17,10 @@ Application de critiques littéraire.
   pour exécuter un environement virtuel.
 - Lancez la commande `[PYTHON] -m pip install -r requirements.txt`
 - Placez vous dans le répertoire LITReview
+- Crée un compte Administrateur avec la commande `[python] manage.py createsuperuser`
 - Démarrer le server web avec la commande `[python] manage.py runserver`
-- La sortie de commande indique l'url de l'application (default: [http://127.0.0.1:8000](http://127.0.0.1:8000))
+- La sortie de commande indique l'url de l'application (default: [http://127.0.0.1:8000/](http://127.0.0.1:8000/))
+- Le backoffice d'admistration sera accessible à (admin: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/))
 
 ## PEP8
 
