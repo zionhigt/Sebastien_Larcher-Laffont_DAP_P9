@@ -4,12 +4,13 @@
 <div class="single-form">
     <h1>Créer une review</h1>
     {% if ticket %}
+        <h3>En réponse à :</h3>
         {% include 'ticket/card.html' with data=ticket edit=True %}
     {% endif %}
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% if ticket_form %}
-        <h3>Ticket</h3>
+        <h3>Ma critique concerne :</h3>
         {{ ticket_form.as_p }}
         {% endif %}
         <h3>Critique</h3>

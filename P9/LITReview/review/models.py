@@ -12,8 +12,8 @@ class Review(models.Model):
         MaxValueValidator(5)
     ])
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    headline = models.CharField(max_length=128)
-    body = models.TextField(max_length=8192, blank=True)
+    headline = models.CharField(verbose_name="Entête", max_length=128)
+    body = models.TextField(verbose_name="Paragraphe", max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
