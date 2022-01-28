@@ -9,9 +9,13 @@
     <div class="description">
         <p>{{ data.description }}</p>
     </div>
+    <!-- correction soutenace, ajout d'une condition, si l'image existe on la rend -->
+    <!-- Erreur django.urls.exceptions.NoReverseMatch: Reverse for 'media' with arguments '(<ImageFieldFile: None>,)' -->
+    {% if data.image %}
     <div>
         <img src="{% url 'media' data.image %}" alt="Image du ticket {{ data.title }}"/>
     </div>
+    {% endif %}
     <div class="btn-ticket-container btns">
     {% if not data.has_review and not edit %}
         <a href="{% url 'create_review' data.id %}" class="btn btn-link btn-primary btn-ticket">Créer une critique</a>
